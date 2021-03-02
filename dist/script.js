@@ -13,6 +13,12 @@ let shuffleCards = () => {
   let cards = [].concat(_.cloneDeep(CardTypes), _.cloneDeep(CardTypes));
   return _.shuffle(cards);
 }
+
+let shuffleCard = () => {	
+	let c = CardTypes;
+  return _.shuffle(c);
+ }
+ 
 new Vue({
   el: "#app",
   
@@ -22,7 +28,7 @@ new Vue({
     started: false,
     startTime: 0,
     turns: 0,
-    cardsshow: 6,
+    cardsshow: 4,
     flipBackTimer: null,
     timer: null,
     time: "--:--",
@@ -32,8 +38,9 @@ new Vue({
   methods: {
     resetGame() {
       this.showSplash = false;
+      CardTypes = shuffleCard();
       CardTypes = CardTypes.splice(0,this.cardsshow);
-      let cards = shuffleCards()
+      let cards = shuffleCards()	
       console.warn(cards)
       this.turns = 0;
       this.score = 0;
